@@ -1,8 +1,8 @@
 = LSM6DS3 Library for Arduino =
 
-Allows you to read the accelerometer and gyroscope values from the LSM6DS3 IMU on your Arduino Nano 33 IoT or Arduino Uno WiFi Rev2 boards.
+Allows you to read the accelerometer, gyroscope, and temperature values from the LSM6DS3 IMU on your Arduino Nano 33 IoT or Arduino Uno WiFi Rev2 boards.
 
-For more information about this library please visit us at https://www.arduino.cc/en/Reference/Arduino_LSM6DS3
+For more information about this library please visit https://www.arduino.cc/en/Reference/Arduino_LSM6DS3
 
 == License ==
 

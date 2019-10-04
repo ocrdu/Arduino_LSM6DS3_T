@@ -15,12 +15,15 @@ IMU	KEYWORD1
 begin	KEYWORD2
 end	KEYWORD2
 
-readAcceleration	KEYWORD2
-readGyroscope	KEYWORD2
-gyroscopeAvailable	KEYWORD2
-accelerationAvailable	KEYWORD2
-accelerationSampleRate	KEYWORD2
-gyroscopeSampleRate	KEYWORD2
+readAcceleration KEYWORD2
+readGyroscope KEYWORD2
+readTemperature KEYWORD2
+gyroscopeAvailable KEYWORD2
+accelerationAvailable KEYWORD2
+temperatureAvailable KEYWORD2
+accelerationSampleRate KEYWORD2
+gyroscopeSampleRate KEYWORD2
+temperatureSampleRate KEYWORD2
 
 #######################################
 # Constants

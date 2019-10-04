@@ -45,6 +45,9 @@
 #define LSM6DS3_OUTZ_L_XL          0X2C
 #define LSM6DS3_OUTZ_H_XL          0X2D
 
+#define LSM6DS3_OUT_TEMP_L         0X20
+#define LSM6DS3_OUT_TEMP_H         0X21
+
 
 LSM6DS3Class::LSM6DS3Class(TwoWire& wire, uint8_t slaveAddress) :
   _wire(&wire),
@@ -84,7 +87,7 @@ int LSM6DS3Class::begin()
   //set the gyroscope control register to work at 104 Hz, 2000 dps and in bypass mode
   writeRegister(LSM6DS3_CTRL2_G, 0x4C);
 
-  // Set the Accelerometer control register to work at 104 Hz, 4G,and in bypass mode and enable ODR/4
+  // Set the Accelerometer control register to work at 104 Hz, 4G, and in bypass mode and enable ODR/4
   // low pass filter(check figure9 of LSM6DS3's datasheet)
   writeRegister(LSM6DS3_CTRL1_XL, 0x4A);
 
@@ -174,6 +177,36 @@ int LSM6DS3Class::gyroscopeAvailable()
 float LSM6DS3Class::gyroscopeSampleRate()
 {
   return 104.0F;
+}
+
+int LSM6DS3Class::readTemperature(float& t)
+{
+  int16_t data[3];
+
+  if (!readRegisters(LSM6DS3_OUT_TEMP_L, (uint8_t*)data, sizeof(data))) {
+    t = NAN;
+
+    return 0;
+  }
+
+  t = (float)data[0] / 16; 
+  t += 25;
+
+  return 1;
+}
+
+int LSM6DS3Class::temperatureAvailable()
+{
+  if (readRegister(LSM6DS3_STATUS_REG) & 0x03) {
+    return 1;
+  }
+
+  return 0;
+}
+
+float LSM6DS3Class::temperatureSampleRate()
+{
+  return 52.0F;
 }
 
 int LSM6DS3Class::readRegister(uint8_t address)
